@@ -1,0 +1,26 @@
+<div>
+    <span class="h1">Pair</span>
+    <a href="#!/transfer" class="btn btn-default pull-right" ng-show="devices && devices.length">Return to Devices</a>
+
+    <p>
+    To pair a device, copy the code below and paste it in the other device.<br>
+    You can also use our app to pair the two devices with the QR Code below.<br>
+    </p>
+
+    <div class="col-md-6">
+        <h2>Pair Code:</h2>
+        <form ng-submit="requestPair()">
+            <div class="input-group input-group-lg">
+                <input type="text" ng-model="requestedPairCode" class="pair form-control" required>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Pair</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Your Code:</h2>
+        <div class="pair pairCode">{{pairId}}</div>
+        <qrcode id="qrPairCode" version="9" size="240" error-correction-level="M" data="{{qrPairId}}"></qrcode>
+    </div>
+</div>

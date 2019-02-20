@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h4 class="modal-title">Send a File</h4>
+</div>
+<div class="modal-body">
+
+    <div ng-hide="sendingData">
+        <file-input ng-model="file"></file-input>
+    </div>
+    <div ng-show="sendingData">
+        <p class="waiting">Transferring<span>.</span><span>.</span><span>.</span></p>
+
+        <div class="progress">
+            <uib-progressbar max="fileSize" value="progress"><span style="color:white; white-space:nowrap;">{{(progress/fileSize*100).toFixed(1)}}%</span></uib-progressbar>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="send()" ng-hide="sendingData">Send</button>
+</div>

@@ -1,0 +1,86 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+        jettyVersion = '9.3.11.v20160721'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+
+jar {
+	baseName = 'exeo'
+	version = '0.0.1-SNAPSHOT'
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    compile project(":annotation-processor")
+
+    compile("org.springframework.boot:spring-boot-starter") {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+	//compile('org.springframework.boot:spring-boot-starter-undertow')
+	compile('org.springframework.boot:spring-boot-starter-jetty')
+    //compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile('org.springframework.boot:spring-boot-starter-websocket') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile('org.springframework:spring-webmvc')
+
+    compile("org.eclipse.jetty:jetty-servlet:${jettyVersion}")
+    compile("org.eclipse.jetty.http2:http2-server:${jettyVersion}")
+    compile("org.eclipse.jetty:jetty-alpn-server:${jettyVersion}")
+    compile("org.eclipse.jetty.websocket:javax-websocket-client-impl:${jettyVersion}")
+    compile("org.eclipse.jetty.websocket:javax-websocket-server-impl:${jettyVersion}")
+    compile("org.eclipse.jetty.websocket:websocket-api:${jettyVersion}")
+    compile("org.eclipse.jetty.websocket:websocket-common:${jettyVersion}")
+    compile("org.eclipse.jetty.websocket:websocket-server:${jettyVersion}")
+    compile("org.eclipse.jetty.websocket:websocket-client:${jettyVersion}")
+
+    compile('org.apache.commons:commons-pool2:2.4.2')
+    compile('org.apache.commons:commons-lang3:3.4')
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.5.1'
+
+    compile('com.google.api-client:google-api-client:1.19.1')
+    compile('com.nimbusds:nimbus-jose-jwt:3.9.2')
+    compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+    compile('org.bouncycastle:bcprov-jdk15on:1.54')
+    compile('org.springframework.data:spring-data-redis')
+    compile('redis.clients:jedis:2.7.3')
+    compile('mysql:mysql-connector-java:5.1.36')
+    compile('org.json:json')
+    compile('javax.el:javax.el-api:2.2.4')
+    compile group: 'javax.websocket', name: 'javax.websocket-api', version: 1.0
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+springBoot {
+    providedConfiguration = "provided"
+}

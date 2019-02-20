@@ -1,0 +1,23 @@
+<div class="col-md-12">
+    <span class="h1">Devices</span>
+    <a href="#!/pair" class="btn btn-default pull-right">Pair Another Device</a>
+    <hr class="page-divider">
+
+
+    <div class="text-muted" ng-hide="devices.length">No Devices Connected</div>
+    <div class="row-fluid" >
+        <div class="device col-lg-4 col-md-5" ng-repeat="device in devices">
+            <div class="device-heading">
+                <span class="device-name">{{device.name}}</span>
+                <span class="device-status fa-stack" uib-tooltip="Not Connected" tooltip-append-to-body="true">
+                    <i class="fa fa-wifi fa-stack-2x"></i>
+                    <i class="fa fa-exclamation fa-stack-1x text-danger" ng-hide="device.channel"></i>
+                </span>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-default col-xs-12" ng-click="sendFile(device)">Send File</button>
+                <!--button class="btn btn-default col-xs-6">File Lobby</button-->
+            </div>
+        </div>
+    </div>
+</div>

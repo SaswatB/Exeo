@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h4 class="modal-title">Please register this device</h4>
+</div>
+<div class="modal-body">
+    <div class="alert alert-danger" ng-show="!!errorAlertMsg">
+        {{errorAlertMsg}}
+    </div>
+    <div class="row">
+        <div ng-class="!!existingDevices ? 'col-xs-6' : ''">
+            <form ng-submit="registerNewDevice()">
+                <label>Register New Device:</label>
+                <div class="input-group input-group-lg">
+                    <input style="width: 100%; text-align: center;" type="text" class="form-control input-lg" ng-model="name"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Register</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-6" ng-show="!!existingDevices">
+            <form ng-submit="registerExistingDevice()">
+                <label>Register Existing Device</label>
+                <div class="input-group input-group-lg">
+                    <select class="form-control input-lg" ng-model="id">
+                        <option ng-repeat="device in existingDevices" ng-value="device.id">{{device.name}}</option>
+                    </select>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Register</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer text-muted" ng-init="showDeviceRegisterDetails=false">
+    <span class="pull-left info-btn" ng-click="showDeviceRegisterDetails=!showDeviceRegisterDetails"><i class="fa fa-info-circle"></i></span>
+    <div ng-show="showDeviceRegisterDetails" class="text-left"><br>
+        Exeo handles every new login as a new device.<br>
+        Please properly associate this system with a new device or its correct existing device.<br>
+        If this is a temporary device we recommend signing out and using our Quick Start service.
+    </div>
+    <button class="btn btn-danger" ng-click="logout();">Sign Out</button>
+</div>

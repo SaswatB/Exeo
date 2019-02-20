@@ -1,0 +1,250 @@
+
+@import "simple-sidebar";
+@import "sticky-footer";
+@import "loading-spinner";
+@import "qr-code";
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-weight: 500;
+  font-style: normal;
+  src: url('../fonts/Roboto-Mono/Roboto-Mono-500.eot');
+  src: url('../fonts/Roboto-Mono/Roboto-Mono-500.eot?#iefix') format('embedded-opentype'),
+  local('Roboto Mono Medium'),
+  local('Roboto-Mono-500'),
+  url('../fonts/Roboto-Mono/Roboto-Mono-500.woff2') format('woff2'),
+  url('../fonts/Roboto-Mono/Roboto-Mono-500.woff') format('woff'),
+  url('../fonts/Roboto-Mono/Roboto-Mono-500.ttf') format('truetype'),
+  url('../fonts/Roboto-Mono/Roboto-Mono-500.svg#RobotoMono') format('svg');
+}
+
+body {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+input, select {
+  color: #000000;
+}
+
+input[type="file"] {
+  color: #ffffff;
+}
+
+.pair {
+  color: white;
+  background-color: rgb(191, 54, 12);
+  font-family: "Roboto Mono";
+  border-color: #ffa726;
+}
+
+.btn:hover, .btn:focus, .btn.focus {
+  color: #aaa;
+}
+
+.sidebar-item:focus:hover {
+  outline: 0 !important;
+}
+
+.btn-default {
+  @extend .hvr-radial-out;
+
+  &:before {
+    background-color: #0f0f0f;
+  }
+  //noinspection CssOverwrittenProperties
+  &:focus {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+}
+
+.info-btn {
+  @extend .hvr-fade;
+  cursor: pointer;
+
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+.page-divider {
+  border-color: #333;
+  margin-bottom: 0;
+}
+
+/**modal style**/
+.modal-content {
+  background-color: #263238;
+  color: #fff;
+}
+
+.modal-header{
+  border-bottom: 1px solid #4a4a4a;
+}
+
+.modal-footer {
+  border-top: 1px solid #4a4a4a;
+}
+
+/**ngView animations**/
+.app-view-container{
+  position: relative;
+}
+
+.app-view {
+  transform: translate3d(0,0,0);
+
+  .ng-enter, .ng-leave {
+    position:absolute;
+    top:0;
+    left:0;
+
+    width: 100%;
+  }
+
+  .ng-enter {
+    animation: 0.5s slide-animation-enter ease;
+  }
+
+  .ng-leave {
+    animation: 0.5s slide-animation-leave ease;
+  }
+}
+
+@keyframes slide-animation-enter {
+  from {
+    /*z-index:100;*/
+    left:-600px;
+    opacity:0;
+  }
+  to {
+    left:0;
+    opacity:1;
+  }
+}
+
+@keyframes slide-animation-leave {
+  from {
+    /*z-index:101;*/
+    left:0;
+    opacity:1;
+  }
+  to {
+    //left:-600px;
+    opacity:0;
+  }
+}
+
+//dot dot dot blinking animation, from https://martinwolf.org/blog/2015/01/pure-css-savingloading-dots-animation
+
+@keyframes blink {
+  //At the start of the animation the dot has an opacity of .2
+  0% {
+    opacity: .2;
+  }
+  //At 20% the dot is fully visible and then fades out slowly
+  20% {
+    opacity: 1;
+  }
+  //Until it reaches an opacity of .2 and the animation can start again
+  100% {
+    opacity: .2;
+  }
+}
+
+.waiting span {
+  //Use the blink animation, which is defined above
+  animation-name: blink;
+  //The animation should take 1.4 seconds
+  animation-duration: 1.4s;
+  //It will repeat itself forever
+  animation-iteration-count: infinite;
+  /**
+   * This makes sure that the starting style (opacity: .2)
+   * of the animation is applied before the animation starts.
+   * Otherwise we would see a short flash or would have
+   * to set the default styling of the dots to the same
+   * as the animation. Same applies for the ending styles.
+   */
+  animation-fill-mode: both;
+}
+
+.waiting span:nth-child(2) {
+  /**
+   * Starts the animation of the third dot
+   * with a delay of .2s, otherwise all dots
+   * would animate at the same time
+   */
+  animation-delay: .2s;
+}
+
+.waiting span:nth-child(3) {
+  /**
+   * Starts the animation of the third dot
+   * with a delay of .4s, otherwise all dots
+   * would animate at the same time
+   */
+  animation-delay: .4s;
+}
+
+//file input styling
+.fileInput {
+  font-size: 1.25em;
+  font-weight: 700;
+  display: inline-block;
+  cursor: pointer; /* "hand" cursor */
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+
+  input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+//device boxes
+.device {
+  background: #333;
+  padding: 0;
+  margin: 10px;
+  border-radius: 20px;
+
+  .device-heading {
+    display: flex;
+    align-items: center;
+    background: #111;
+    padding: 10px 60px 5px 60px;
+    position: relative;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 2px solid #01579b;
+
+    .device-name {
+      font-size: 25px;
+      text-align: center;
+      margin: auto;
+    }
+
+    .device-status {
+      width: 3em;
+      position: absolute;
+      right: 20px;
+      top: 13px;
+
+      .text-danger{
+        font-size: 1.5em;
+        text-shadow: 0 0 9px #000;
+      }
+    }
+  }
+  .btn-group {
+    width: 100%;
+    padding: 10px;
+  }
+}

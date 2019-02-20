@@ -1,0 +1,22 @@
+/* Sticky footer styles -------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #111;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+}
+
+#wrapper {
+  /* Padding on top and bottom for navbar and footer*/
+  /*margin-bottom: 60px;*/
+}

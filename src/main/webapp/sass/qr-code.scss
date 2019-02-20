@@ -1,0 +1,49 @@
+/**qrCode page media queries**/
+.pairCode {
+  padding: 20px;
+  display: table;
+  margin: 30px auto;
+  font-size: xx-large;
+}
+
+#qrPairCode {
+  width:240px;
+  height:240px;
+  margin: 15px auto 0;
+  display: table;
+  border: 20px white solid;
+}
+
+/*@media (max-width: 460px) {
+    #qrPairCode {
+        width: 200px;
+        height: 200px;
+    }
+}*/
+
+.codeCol {
+  background: #111;
+  margin: 20px;
+  min-width: 275px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  h2 {
+    margin-top: 0;
+  }
+}
+
+#myCodeCol {
+  padding-left: 0;
+  padding-right: 0;
+  h2 {
+    margin-left:30px;
+  }
+}
+
+#newCodeCol {
+  padding-left: 30px;
+  padding-right: 30px;
+  h2 {
+    margin-bottom: 20px;
+  }
+}

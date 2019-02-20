@@ -1,0 +1,279 @@
+@import '../node_modules/hover.css/scss/hover';
+@import '../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/animate.css/animate.css';
+
+.cover-btn-bar {
+  @extend .btn-group, .col-xs-12;
+  display: flex;
+  align-items: center
+}
+
+.cover-btn {
+  @extend .btn, .btn-primary, .btn-lg, .col-xs-6;
+  @extend .hvr-fade;
+  min-width: 130px;
+  border-width: 2px;
+  border-color: white;
+}
+
+.cover-btn:hover, .cover-btn:hover:focus {
+  background-color: #000;
+  border-color: #fff;
+}
+
+.cover-btn:active, .cover-btn:focus, .cover-btn:focus:active, .cover-btn:hover:active {
+  background-color: #333;
+  border-color: #777;
+}
+
+.start-btn {
+  @extend .cover-btn;
+  background-color: rgba(70,70,100,.7);
+}
+
+.login-btn {
+  @extend .cover-btn;
+  background-color: white;
+  color: black;
+}
+
+.navbar-header {
+  float: left;
+}
+
+.navbar-inverse {
+  background-color: rgba(34,34,34,.85);
+}
+
+.camera-link {
+  float: right;
+  padding: 15px;
+  color: #fff;
+}
+
+.camera-link:hover {
+  color: #777;
+}
+
+.cover-center-info {
+  @extend .col-xs-12, .text-center;
+  background-color: rgba(0, 0, 0, 0.76);
+  padding: 20px;
+}
+
+/****** LOGIN MODAL ******/
+.loginmodal .modal-dialog {
+  padding: 30px;
+  /*background-color: rgba(20, 20, 20, 0.8);rgba(247, 247, 247, 0.8);*/
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.loginmodal .modal-content {
+  background-color: black;
+  padding: 30px;
+}
+
+.loginmodal-container h1 {
+  text-align: center;
+  font-size: 1.8em;
+}
+
+.loginmodal-container input[type=text], input[type=email], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+
+.loginmodal-container .nav-tabs {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+}
+
+.loginmodal-container .help-block {
+  font-size: 14px;
+  color: red;
+  margin-top: 4px;
+  text-align: left;
+  margin-bottom: 0px;
+  position: relative;
+  height: 14px;
+}
+
+.loginmodal-container .help-block span {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.loginmodal-container .form-group {
+   margin-left: 0;
+   margin-right: 0;
+ }
+
+.loginmodal-container form {
+  margin-top: 12px;
+}
+
+.modal {
+  text-align: center;
+}
+
+.input-group-addon .fa-lock {
+  width: 11px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.uib-tab a {
+  @extend .hvr-fade;
+
+  color: #777777;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+.nav-tabs > li.active > a {
+  color: #000000;
+}
+
+body:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 400px;
+
+  content: "";
+  background-color: black;
+  background: url("/images/background.jpg") no-repeat center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/background.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/background.jpg', sizingMethod='scale')";
+}
+
+body {
+  color: #ffffff;
+  background-color: black;
+  min-width: 400px;
+
+  animation: fadein .5s;
+  -moz-animation: fadein .5s; /* Firefox */
+  -webkit-animation: fadein .5s; /* Safari and Chrome */
+  -o-animation: fadein .5s; /* Opera */
+}
+
+.center-vertical {
+  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+@keyframes fadein {
+  0%   {opacity:0;}
+  50%  {opacity:0;}
+  100% {opacity:1;}
+}
+@-moz-keyframes fadein { /* Firefox */
+  0%   {opacity:0;}
+  50%  {opacity:0;}
+  100% {opacity:1;}
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  0%   {opacity:0;}
+  50%  {opacity:0;}
+  100% {opacity:1;}
+}
+@-o-keyframes fadein { /* Opera */
+  0%   {opacity:0;}
+  50%  {opacity:0;}
+  100% {opacity:1;}
+}
+
+.tab-content {
+  -webkit-transition: height 1s;
+  -moz-transition: height 1s;
+  -ms-transition: height 1s;
+  -o-transition: height 1s;
+  transition: height 1s;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+  opacity: 0;
+
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.tab-content > .active {
+  display: block;
+  opacity: 1;
+
+  animation: growin  .5s;
+  -moz-animation: growin .5s; /* Firefox */
+  -webkit-animation: growin .5s; /* Safari and Chrome */
+  -o-animation: growin .5s; /* Opera */
+}
+
+@keyframes growin {
+  from {display:block; opacity: 0;}
+  to {opacity: 1;}
+}
+@-moz-keyframes growin { /* Firefox */
+  from {display:block; opacity: 0;}
+  to {opacity: 1;}
+}
+@-webkit-keyframes growin { /* Safari and Chrome */
+  from {display:block; opacity: 0;}
+  to {opacity: 1;}
+}
+@-o-keyframes growin { /* Opera */
+  from {display:block; opacity: 0;}
+  to {opacity: 1;}
+}
+
+.btn-danger:before {
+  background: #FF4444;
+}
+
+.login-cancel {
+  margin-top: 5px;
+}

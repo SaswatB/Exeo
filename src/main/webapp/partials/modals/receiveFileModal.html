@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title">Receiving a File</h4>
+</div>
+<div class="modal-body">
+
+    <div ng-hide="receivingData">
+        Would you like to accept the following file from {{deviceName}}?
+        <p class="text-center" style="margin-top: 8px;">
+        {{fileName}} <br>
+        {{fileSize | filesize}}
+        </p>
+    </div>
+    <div ng-show="receivingData">
+        <p class="waiting">Transferring<span>.</span><span>.</span><span>.</span></p>
+
+        <!--todo see why this progress element is difference from sendFileModal-->
+        <uib-progressbar max="fileSize" value="progress"><span style="color:white; white-space:nowrap;">{{(progress/fileSize*100).toFixed(1)}}%</span></uib-progressbar>
+        <a id="download" ng-href="{{downloadHref}}" ng-attr-download="{{downloadName}}" ng-show="downloadHref">Download</a>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" ng-click="reject()" ng-hide="receivingData">Reject</button>
+    <button class="btn btn-primary" ng-click="accept()" ng-hide="receivingData">Accept</button>
+
+    <button class="btn btn-danger" ng-click="cancel()" ng-show="receivingData">Cancel</button>
+</div>

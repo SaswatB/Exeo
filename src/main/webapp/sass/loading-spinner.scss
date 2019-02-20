@@ -1,0 +1,44 @@
+/* Loading Spinner -------------------------------------------------- */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  color: #ffffff;
+  z-index: 15000;
+  background-color: #000000;
+
+  text-align:center;
+
+  display: flex;
+  align-items: center;
+}
+
+.hoz-center {
+  margin: auto;
+}
+
+.spinner {
+  background-color: #1B3DE2;
+  border: 7px solid #1B3DE2;
+  border-top: 7px solid #FFFFFF;
+  border-bottom: 7px solid #FFFFFF;
+  border-radius: 120px;
+  box-shadow: 0 0 30px #1B3DE2;
+
+  min-width: 100px;
+  min-height: 100px;
+
+  animation: spin 1s infinite cubic-bezier(.45, .23, .52, .82);
+}

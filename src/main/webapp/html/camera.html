@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="exeo_camera">
+
+<head>
+    <title>Welcome to Exeo!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    //preload bg image
+    new Image().src="/images/background.jpg";
+    </script>
+
+    <script type="text/javascript" src="js/camera.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="CameraController">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"><span>Exeo</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="cover-image"></div>
+    <div class="container center-vertical">
+        <div class="col-xs-12 text-center">
+            <div class="vid-container">
+                <video autoplay="" id="v"></video>
+                <div class="vid-left"></div>
+                <div class="vid-right"></div>
+                <div class="vid-top"></div>
+                <div class="vid-bottom"></div>
+            </div>
+            <canvas id="qr-canvas" style="display: none"></canvas>
+            <canvas id="qr-sub-canvas" width="500" height="500" style="display: none"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-92780136-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>

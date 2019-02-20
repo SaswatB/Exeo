@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="exeo_index">
+
+<head>
+    <title>Welcome to Exeo!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    //preload bg image
+    new Image().src="/images/background.jpg";
+    </script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="IndexController">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><span>Exeo</span></a>
+            </div>
+            <a class="camera-link" href="/camera" style="float: right; padding: 15px;">
+                <i class="fa fa-camera"></i>
+            </a>
+        </div>
+    </div>
+    <div class="cover-image"></div>
+    <div class="container center-vertical">
+        <div class="cover-center-info">
+            <h1>Exeo</h1>
+            <p>Welcome to a new way of sharing information.</p>
+            <br>
+            <br>
+            <div class="cover-btn-bar" ng-show="showLogin" role="group" aria-label="...">
+                <a class="start-btn" href="/quick">Quick Start</a>
+                <button class="login-btn" ng-click="begin()">Login/Register</button>
+            </div>
+            <a class="login-btn col-xs-12" ng-hide="showLogin" href="/app">Enter</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="loginModal.html">
+<div class="loginmodal-container">
+    <uib-tabset justified="true">
+        <uib-tab heading="Login">
+            <form name="loginForm" class="form-horizontal" ng-submit="processLogin()" novalidate>
+                <div id="loginFailed" ng-show="loginFailed" class="alert alert-danger alert-dismissible animated animate-show" role="alert">
+                    Login Failed!
+                    <button type="button" class="close" ng-click="hideLoginAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input class="form-control" type="email" name="username" placeholder="Email" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" ng-model="formDataLog.username" required>
+                    </div>
+                    <div class="help-block animate-show" ng-show="loginForm.username.$dirty && loginForm.username.$invalid">
+                        <span class="animate-show" ng-show="loginForm.username.$error.required">Email is required.</span>
+                        <span class="animate-show" ng-show="loginForm.username.$error.email">Invalid email address.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input class="form-control" type="password" name="password" placeholder="Password" ng-model="formDataLog.password" required>
+                    </div>
+                    <div class="help-block animate-show" ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+                        <span class="animate-show" ng-show="loginForm.password.$error.required">Password is required.</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block hvr-underline-from-center hvr-fade" ng-disabled="loginForm.username.$invalid || loginForm.password.$invalid">
+                    Login
+                </button>
+            </form>
+        </uib-tab>
+
+
+        <uib-tab heading="Register">
+            <form name="registerForm" class="form-horizontal" ng-submit="processRegister()" novalidate>
+                <div id="registerFailed" ng-show="registerFailed" class="alert alert-danger alert-dismissible animated animate-show" role="alert">
+                    <button type="button" class="close" ng-click="hideRegisterAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    Registration Failed! <br>{{regFailedMsg}}
+                </div>
+
+                <!--First Name-->
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input class="form-control" type="text" name="firstname" placeholder="First Name" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" ng-model="formDataReg.firstname" required>
+                    </div>
+                    <div class="help-block animate-show" ng-show="registerForm.firstname.$dirty && registerForm.firstname.$invalid">
+                        <span class="animate-show" ng-show="registerForm.firstname.$error.required">First Name is required.</span>
+                    </div>
+                </div>
+                <!--Last Name-->
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input class="form-control" type="text" name="lastname" placeholder="Last Name" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" ng-model="formDataReg.lastname" required>
+                    </div>
+                    <div class="help-block animate-show" ng-show="registerForm.lastname.$dirty && registerForm.lastname.$invalid">
+                        <span class="animate-show" ng-show="registerForm.lastname.$error.required">Last Name is required.</span>
+                    </div>
+                </div>
+
+                <!--Email-->
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input class="form-control" type="email" name="username" placeholder="Email" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" ng-model="formDataReg.username" required>
+                    </div>
+                    <div class="help-block animate-show" ng-show="registerForm.username.$dirty && registerForm.username.$invalid">
+                        <span class="animate-show" ng-show="registerForm.username.$error.required">Email is required.</span>
+                        <span class="animate-show" ng-show="registerForm.username.$error.email">Invalid email address.</span>
+                    </div>
+                </div>
+
+                <!--Password-->
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input class="form-control" type="password" name="password" placeholder="Password" ng-model="formDataReg.password" required>
+                    </div>
+                    <div class="help-block animate-show" ng-show="registerForm.password.$dirty && registerForm.password.$invalid">
+                        <span class="animate-show" ng-show="registerForm.password.$error.required">Password is required.</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-block hvr-underline-from-center hvr-fade" ng-disabled="registerForm.firstname.$invalid || registerForm.lastname.$invalid || registerForm.username.$invalid || registerForm.password.$invalid">
+                    Register
+                </button>
+            </form>
+        </uib-tab>
+    </uib-tabset>
+    <button ng-click="closeDialog()" class="btn btn-danger btn-block hvr-underline-from-center hvr-fade login-cancel">
+        Cancel
+    </button>
+</div>
+</script>
+
+<div id="name"></div>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-92780136-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>

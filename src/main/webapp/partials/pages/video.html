@@ -1,0 +1,10 @@
+<h1>Hi{{$root.userName?' ':''}}{{$root.userName}}!</h1><br>
+
+<video id="localVideo" autoplay muted></video>
+<video id="remoteVideo" autoplay></video>
+
+<div class="btn-group">
+    <button class="btn btn-default" ng-click="start()" ng-disabled="startDisabled">Start</button>
+    <button class="btn btn-default" ng-click="call()" ng-disabled="callDisabled">Call</button>
+    <button class="btn btn-default" ng-click="hangup()" ng-disabled="hangupDisabled">Hang Up</button>
+</div>
